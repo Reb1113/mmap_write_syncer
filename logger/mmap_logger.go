@@ -48,14 +48,13 @@ var (
 	os_Stat     = os.Stat
 	megabyte    = 1024 * 1024
 	pageSize    = 4 * 1024
-	mmapLogger  *MMapLogger
 )
 
 // 停止 MMapLogger
-func StopMmapLogger() {
-	if mmapLogger != nil {
-		mmapLogger.unMap()      // 解除内存映射
-		mmapLogger.file.Close() // 关闭文件
+func (l *MMapLogger) StopMmapLogger() {
+	if l != nil {
+		l.unMap()      // 解除内存映射
+		l.file.Close() // 关闭文件
 	}
 }
 
